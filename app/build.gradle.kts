@@ -10,11 +10,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.todolistapp"
+    namespace = "com.google.opensource.composecodelab"
     compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
-        applicationId = "com.example.todolistapp"
+        applicationId = "com.google.opensource.composecodelab"
         minSdk = libs.versions.minSdk.get().toInt()
         targetSdk = libs.versions.targetSdk.get().toInt()
         versionCode = libs.versions.versionCode.get().toInt()
