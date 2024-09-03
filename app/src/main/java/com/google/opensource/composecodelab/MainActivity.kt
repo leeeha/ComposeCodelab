@@ -12,12 +12,16 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.paddingFromBaseline
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
@@ -161,6 +165,24 @@ fun AlignYourBodyRow(modifier: Modifier = Modifier) {
     }
 }
 
+@Composable
+fun FavoriteCollectionsGrid(modifier: Modifier = Modifier) {
+    LazyHorizontalGrid(
+        rows = GridCells.Fixed(2),
+        contentPadding = PaddingValues(horizontal = 16.dp),
+        horizontalArrangement = Arrangement.spacedBy(16.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp),
+        modifier = modifier.height(168.dp)
+    ) {
+        items(favoriteCollectionsData) { item ->
+            FavoriteCollectionCard(
+                drawableResId = item.drawable,
+                stringResId = item.text,
+            )
+        }
+    }
+}
+
 private val alignYourBodyData = listOf(
     R.drawable.ab1_inversions to R.string.ab1_inversions,
     R.drawable.ab2_quick_yoga to R.string.ab2_quick_yoga,
@@ -219,5 +241,13 @@ private fun FavoriteCollectionCardPreview() {
 private fun AlignYourBodyRowPreview() {
     ComposeCodelabTheme {
         AlignYourBodyRow()
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun FavoriteCollectionsGridPreview() {
+    ComposeCodelabTheme {
+        FavoriteCollectionsGrid()
     }
 }
