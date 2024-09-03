@@ -7,17 +7,21 @@ import androidx.activity.enableEdgeToEdge
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.paddingFromBaseline
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
@@ -86,7 +90,7 @@ fun SearchBar(modifier: Modifier = Modifier) {
 fun AlignYourBodyElement(
     @DrawableRes drawableResId: Int,
     @StringRes stringResId: Int,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -108,6 +112,36 @@ fun AlignYourBodyElement(
     }
 }
 
+@Composable
+fun FavoriteCollectionCard(
+    @DrawableRes drawableResId: Int,
+    @StringRes stringResId: Int,
+    modifier: Modifier = Modifier
+) {
+    Surface(
+        shape = MaterialTheme.shapes.medium,
+        color = MaterialTheme.colorScheme.surfaceVariant,
+        modifier = modifier
+    ) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier.width(255.dp)
+        ) {
+            Image(
+                painter = painterResource(id = drawableResId),
+                contentDescription = null,
+                contentScale = ContentScale.Crop,
+                modifier = Modifier.size(80.dp)
+            )
+            Text(
+                text = stringResource(id = stringResId),
+                style = MaterialTheme.typography.titleMedium,
+                modifier = modifier.padding(horizontal = 16.dp)
+            )
+        }
+    }
+}
+
 @Preview(showBackground = true)
 @Composable
 private fun SearchBarPreview() {
@@ -117,9 +151,23 @@ private fun SearchBarPreview() {
 @Preview(showBackground = true, backgroundColor = 0xFFF5F0EE)
 @Composable
 private fun AlignYourBodyElementPreview() {
-    AlignYourBodyElement(
-        stringResId = R.string.ab1_inversions,
-        drawableResId = R.drawable.ab1_inversions,
-        modifier = Modifier.padding(8.dp)
-    )
+    ComposeCodelabTheme {
+        AlignYourBodyElement(
+            stringResId = R.string.ab1_inversions,
+            drawableResId = R.drawable.ab1_inversions,
+            modifier = Modifier.padding(8.dp)
+        )
+    }
+}
+
+@Preview(showBackground = true, backgroundColor = 0xFFF5F0EE)
+@Composable
+private fun FavoriteCollectionCardPreview() {
+    ComposeCodelabTheme {
+        FavoriteCollectionCard(
+            drawableResId = R.drawable.fc1_short_mantras,
+            stringResId = R.string.fc1_short_mantras,
+            modifier = Modifier.padding(8.dp)
+        )
+    }
 }
