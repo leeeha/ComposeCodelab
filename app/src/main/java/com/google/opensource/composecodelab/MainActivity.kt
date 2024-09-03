@@ -1,7 +1,6 @@
 package com.google.opensource.composecodelab
 
 import android.os.Bundle
-import android.widget.Space
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -18,7 +17,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.paddingFrom
 import androidx.compose.foundation.layout.paddingFromBaseline
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -319,7 +317,17 @@ fun SootheNavigationRail(modifier: Modifier = Modifier) {
     }
 }
 
-
+@Composable
+fun MySootheAppLandscape() {
+    ComposeCodelabTheme {
+        Surface(color = MaterialTheme.colorScheme.background) {
+            Row {
+                SootheNavigationRail()
+                HomeScreen()
+            }
+        }
+    }
+}
 
 private val alignYourBodyData = listOf(
     R.drawable.ab1_inversions to R.string.ab1_inversions,
@@ -428,4 +436,10 @@ private fun SootheNavigationRailPreview() {
     ComposeCodelabTheme {
         SootheNavigationRail()
     }
+}
+
+@Preview(showBackground = true, widthDp = 800, heightDp = 320)
+@Composable
+private fun MySootheAppLandscapePreview() {
+    MySootheAppLandscape()
 }
