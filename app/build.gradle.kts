@@ -67,6 +67,7 @@ dependencies {
     implementation(libs.bundles.navigation)
     implementation(libs.fragment.ktx)
     implementation(libs.material)
+    implementation(libs.compose.window.size)
 
     // test
     testImplementation(libs.junit)

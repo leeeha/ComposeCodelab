@@ -43,6 +43,10 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
+import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
+import androidx.compose.material3.windowsizeclass.WindowSizeClass
+import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
+import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -55,6 +59,8 @@ import androidx.compose.ui.unit.dp
 import com.google.opensource.composecodelab.ui.theme.ComposeCodelabTheme
 
 /**
+ * Alignment (정렬)
+ *
  * Column : 수평 방향의 정렬
  * Start, End, CenterHorizontally
  *
@@ -65,17 +71,50 @@ import com.google.opensource.composecodelab.ui.theme.ComposeCodelabTheme
  * TopStart, TopCenter, TopEnd
  * CenterStart, Center, CenterEnd
  * BottomStart, BottomCenter, BottomEnd
+ * */
+
+/**
+ * Arrangement (배치)
  *
+ * Row : 수평 방향의 배치
+ * Equal Weight
+ * Space Between
+ * Space Around
+ * Space Evenly
+ * End
+ * Center
+ * Start
+ *
+ * Column : 수직 방향의 배치
+ * Equal Weight
+ * Space Between
+ * Space Around
+ * Space Evenly
+ * Top
+ * Center
+ * Bottom
  * */
 
 class MainActivity : ComponentActivity() {
+    @OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            ComposeCodelabTheme {
+            val windowSizeClass = calculateWindowSizeClass(activity = this)
+            MySootheApp(windowSize = windowSizeClass)
+        }
+    }
+}
 
-            }
+@Composable
+fun MySootheApp(windowSize: WindowSizeClass) {
+    when (windowSize.widthSizeClass) {
+        WindowWidthSizeClass.Compact -> {
+            MySootheAppPortrait()
+        }
+        WindowWidthSizeClass.Expanded -> {
+            MySootheAppLandscape()
         }
     }
 }

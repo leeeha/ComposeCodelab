@@ -30,6 +30,7 @@ datastore = "1.1.1"
 # compose
 activity-compose = "1.9.1"
 compose-bom = "2024.08.00"
+window-size = "1.2.1"
 
 # test
 junit = "4.13.2"
@@ -81,6 +82,8 @@ compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling
 compose-material-three = { module = "androidx.compose.material3:material3" }
 compose-material-icons-extended = { group = "androidx.compose.material", name = "material-icons-extended" }
 compose-material-icons = { module = "androidx.compose.material:material-icons-core" }
+compose-window-size = { group = "androidx.compose.material3", name = "material3-window-size-class-android", version.ref = "window-size" }
+
 compose-activity = { group = "androidx.activity", name = "activity-compose", version.ref = "activity-compose" }
 compose-navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation" }
 compose-lifecycle = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "lifecycle" }
