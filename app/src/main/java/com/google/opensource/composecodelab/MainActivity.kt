@@ -37,6 +37,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -268,6 +269,17 @@ fun SootheBottomNavigation(modifier: Modifier = Modifier) {
     }
 }
 
+@Composable
+fun MySootheAppPortrait() {
+    ComposeCodelabTheme {
+        Scaffold(
+            bottomBar = { SootheBottomNavigation() }
+        ) { padding ->
+            HomeScreen(Modifier.padding(padding))
+        }
+    }
+}
+
 private val alignYourBodyData = listOf(
     R.drawable.ab1_inversions to R.string.ab1_inversions,
     R.drawable.ab2_quick_yoga to R.string.ab2_quick_yoga,
@@ -361,4 +373,10 @@ private fun SootheBottomNavigationPreview() {
     ComposeCodelabTheme {
         SootheBottomNavigation()
     }
+}
+
+@Preview
+@Composable
+private fun SootheAppPortraitPreview() {
+    MySootheAppPortrait()
 }
