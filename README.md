@@ -28,7 +28,7 @@
 
 # 참고 자료
 
-- https://developer.android.com/develop/ui/compose/mental-model?hl=ko
-- https://developer.android.com/courses/jetpack-compose/course?hl=ko
-- https://www.youtube.com/playlist?list=PLWz5rJ2EKKc-CG9riunK996aI6cRhXFDC
-- https://www.youtube.com/playlist?list=PLWz5rJ2EKKc94tpHND8pW8Qt8ZfT1a4cq
+- [Thinking in Compose](https://developer.android.com/develop/ui/compose/mental-model?hl=ko)
+- [Jetpack Compose for Android Developer](https://developer.android.com/courses/jetpack-compose/course?hl=ko)
+- [Compose Basics - MAD Skills](https://www.youtube.com/playlist?list=PLWz5rJ2EKKc-CG9riunK996aI6cRhXFDC)
+- [Compose Layouts and Modifiers - MAD Skills](https://www.youtube.com/playlist?list=PLWz5rJ2EKKc94tpHND8pW8Qt8ZfT1a4cq)
