@@ -19,7 +19,7 @@ import androidx.compose.ui.unit.dp
  * Composition: Composable 실행에 따라 Compose가 빌드한 UI
  * Recomposition: 이벤트 발생에 따라 변경된 State를 UI에 반영하기 위해 Composable을 다시 실행하는 것
  *
- * remember: 컴포지션에 private 객체 저장하는 것과 유사 (리컴포지션 발생해도 상태 유지시킴)
+ * remember: 리컴포지션이 발생해도 상태가 보존되도록 함. (컴포지션에 private 객체를 저장하는 것과 유사)
  * rememberSavable: 스크롤에 따른 컴포지션 종료 및 재생성, 액티비티 또는 프로세스 재생성에도 상태 유지
  * */
 @Composable
@@ -43,7 +43,7 @@ fun WaterCounter(modifier: Modifier = Modifier) {
  * --- State hoisting의 중요한 속성
  * 단일 소스 저장소: 상태를 복제하는 대신 컴포저블의 호출자로 위치를 끌어올리기 때문에 소스 저장소가 하나만 있다. (버그 방지에 도움)
  * 공유 가능: 끌어올린 상태를 여러 컴포저블과 공유할 수 있다.
- * 가로채기 가능: Stateless 컴포저블의 호출자는 상태를 변경하기 전에 이벤트를 건너뛸 것인지 결정할 수 있다.
+ * 가로채기 가능: Stateless 컴포저블의 호출자는 상태를 변경하기 전에 이벤트를 무시할지 수정할지 결정할 수 있다.
  * 분리 가능: Stateless 컴포저블의 상태는 어디에든(예: ViewModel) 저장할 수 있다.
  *
  * --- 상태 호이스팅의 일반적인 패턴
