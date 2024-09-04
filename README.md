@@ -1,5 +1,4 @@
-## 학습 내용
-
+# 학습 키워드 
 
 <details>
 <summary>Alignment (정렬, cross axis)</summary>
@@ -41,6 +40,6 @@
 - ScrollState (rememberScrollState)
 - WindowSizeClass
 
-## 데모 비디오 
+# 데모 비디오 
 
 https://github.com/user-attachments/assets/b64c2ba3-d9f2-4f5e-b779-078ed128faaa
