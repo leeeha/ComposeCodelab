@@ -1,6 +1,6 @@
-## 학습 내용
+# 학습 키워드 
 
-- [Thinking in Compose](https://developer.android.com/develop/ui/compose/mental-model?hl=ko)
+- Composable
 - Preview, Darkmode
 - Column, Row, Box
 - State hoisting
@@ -8,6 +8,6 @@
 - Animation
 - Theme
 
-## Demo Video
+# 데모 비디오 
 
 https://github.com/user-attachments/assets/d63bfbff-62aa-4051-b024-64dd2b130da2
