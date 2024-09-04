@@ -24,19 +24,13 @@ import com.google.opensource.composecodelab.ui.theme.ComposeCodelabTheme
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContent {
             ComposeCodelabTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Column {
-                        Spacer(
-                            modifier = Modifier.windowInsetsTopHeight(WindowInsets.statusBars)
-                        )
-                        WellnessScreen()
-                    }
+                    WellnessScreen()
                 }
             }
         }
