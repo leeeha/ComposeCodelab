@@ -1,5 +1,15 @@
 # Jetpack Compose Codelab 
 
+각 브랜치에서 작업 결과물을 확인하실 수 있습니다. 
+
+- `codelab1-greeting`
+- `codelab2-layout`
+- `codelab3-state`
+- `codelab4-theme`
+- `codelab5-animation`
+- `codelab6-side-effect`
+- `codelab7-navigation`
+
 ## Compose 기본 사항
 
 - [Jetpack Compose basics](https://developer.android.com/codelabs/jetpack-compose-basics)
