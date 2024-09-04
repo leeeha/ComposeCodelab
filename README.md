@@ -41,6 +41,6 @@
 - ScrollState (rememberScrollState)
 - WindowSizeClass
 
-## Demo Video
+## 데모 비디오 
 
 https://github.com/user-attachments/assets/b64c2ba3-d9f2-4f5e-b779-078ed128faaa
