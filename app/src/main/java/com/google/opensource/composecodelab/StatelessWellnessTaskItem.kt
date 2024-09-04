@@ -22,6 +22,7 @@ import com.google.opensource.composecodelab.ui.theme.ComposeCodelabTheme
 @Composable
 fun StatefulWellnessTaskItem(
     taskName: String,
+    onClose: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     var checkedState by rememberSaveable { mutableStateOf(false) }
@@ -29,7 +30,7 @@ fun StatefulWellnessTaskItem(
         taskName = taskName,
         checked = checkedState,
         onCheckedChange = { newValue -> checkedState = newValue },
-        onClose = { /*TODO*/ },
+        onClose = onClose,
         modifier = modifier
     )
 }
