@@ -9,9 +9,7 @@ import androidx.compose.ui.Modifier
 @Composable
 fun WellnessTaskList(
     modifier: Modifier = Modifier,
-    tasks: List<WellnessTask> = remember {
-        getWellnessTasks()
-    }
+    tasks: List<WellnessTask> = remember { getWellnessTasks() }
 ) {
     LazyColumn(
         modifier = modifier

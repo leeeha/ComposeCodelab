@@ -11,7 +11,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -26,7 +25,7 @@ fun StatefulWellnessTaskItem(
     modifier: Modifier = Modifier
 ) {
     var checkedState by rememberSaveable { mutableStateOf(false) }
-    WellnessTaskItem(
+    StatelessWellnessTaskItem(
         taskName = taskName,
         checked = checkedState,
         onCheckedChange = { newValue -> checkedState = newValue },
@@ -36,7 +35,7 @@ fun StatefulWellnessTaskItem(
 }
 
 @Composable
-fun WellnessTaskItem(
+fun StatelessWellnessTaskItem(
     taskName: String,
     checked: Boolean,
     onCheckedChange: (Boolean) -> Unit,
@@ -64,7 +63,7 @@ fun WellnessTaskItem(
 @Composable
 private fun WellnessTaskItemPreview() {
     ComposeCodelabTheme {
-        WellnessTaskItem(
+        StatelessWellnessTaskItem(
             taskName = "Task 1",
             checked = true,
             onCheckedChange = {},
