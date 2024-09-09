@@ -2,23 +2,6 @@ package com.google.opensource.composecodelab.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-/**
- * Surface
- * 화면의 배경이나 강조도가 낮은 넓은 영역에 사용
- *
- * Primary, Secondary, Tertiary
- * 포그라운드 컴포넌트를 강조하거나 강조하지 않는 데 사용되는 Accent color
- *
- * Container
- * 버튼과 같은 포그라운드 컴포넌트의 색상을 체우는 데 사용되는 컬러 (텍스트, 아이콘에 사용 X)
- *
- * On-
- * 쌍을 이루는 부모 색상 위에 텍스트, 아이콘 색상을 지정할 때 사용
- *
- * -Variant
- * 쌍을 이루는 non-variant 색상보다 강조도가 낮은 버전
- * */
-
 val primaryLight = Color(0xFF805610)
 val onPrimaryLight = Color(0xFFFFFFFF)
 val primaryContainerLight = Color(0xFFFFDDB3)
