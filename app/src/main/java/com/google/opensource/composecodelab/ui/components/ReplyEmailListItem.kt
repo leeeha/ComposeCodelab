@@ -36,19 +36,22 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.selected
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.google.opensource.composecodelab.R
 import com.google.opensource.composecodelab.data.Email
+import com.google.opensource.composecodelab.data.LocalAccountsDataProvider
+import com.google.opensource.composecodelab.ui.theme.ComposeCodelabTheme
 
 @Composable
 fun ReplyEmailListItem(
     email: Email,
     isSelected: Boolean = false,
     modifier: Modifier = Modifier,
-    navigateToDetail: (Long) -> Unit
+    navigateToDetail: (Long) -> Unit,
 ) {
     Card(
-        modifier =  modifier
+        modifier = modifier
             .padding(horizontal = 16.dp, vertical = 4.dp)
             .semantics { selected = isSelected }
             .clickable { navigateToDetail(email.id) },
@@ -99,5 +102,22 @@ fun ReplyEmailListItem(
                 overflow = TextOverflow.Ellipsis
             )
         }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun ReplyEmailItemPreview() {
+    ComposeCodelabTheme {
+        ReplyEmailListItem(
+            email = Email(
+                id = 5L,
+                sender = LocalAccountsDataProvider.getContactAccountByUid(13L),
+                recipients = listOf(LocalAccountsDataProvider.getDefaultUserAccount()),
+                subject = "Update to Your Itinerary",
+                body = "ㅎㅎㅎ",
+                createdAt = "2 hours ago"
+            )
+        ) {}
     }
 }

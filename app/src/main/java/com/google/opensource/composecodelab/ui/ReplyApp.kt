@@ -16,6 +16,7 @@
 
 package com.google.opensource.composecodelab.ui
 
+import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -55,14 +56,12 @@ fun ReplyAppContent(
     closeDetailScreen: () -> Unit,
     navigateToDetail: (Long) -> Unit,
 ) {
-
     val selectedDestination = remember { mutableStateOf(ReplyRoute.INBOX) }
 
     Column(
         modifier = modifier
             .fillMaxSize()
     ) {
-
         if (selectedDestination.value == ReplyRoute.INBOX) {
             ReplyInboxScreen(
                 replyHomeUIState = replyHomeUIState,
@@ -103,7 +102,7 @@ data class ReplyTopLevelDestination(
     val route: String,
     val selectedIcon: ImageVector,
     val unselectedIcon: ImageVector,
-    val iconTextId: Int
+    @StringRes val iconTextId: Int
 )
 
 val TOP_LEVEL_DESTINATIONS = listOf(

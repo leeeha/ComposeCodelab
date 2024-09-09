@@ -34,9 +34,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.google.opensource.composecodelab.R
 import com.google.opensource.composecodelab.data.Email
+import com.google.opensource.composecodelab.data.LocalAccountsDataProvider
+import com.google.opensource.composecodelab.ui.theme.ComposeCodelabTheme
 
 @Composable
 fun ReplyEmailThreadItem(
@@ -84,10 +87,10 @@ fun ReplyEmailThreadItem(
             text = email.subject,
             modifier = Modifier.padding(top = 12.dp, bottom = 8.dp),
         )
-
         Text(
             text = email.body,
         )
+
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -111,5 +114,22 @@ fun ReplyEmailThreadItem(
                 )
             }
         }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun ReplyEmailThreadItemPreview() {
+    ComposeCodelabTheme {
+        ReplyEmailThreadItem(
+            email = Email(
+                id = 5L,
+                sender = LocalAccountsDataProvider.getContactAccountByUid(13L),
+                recipients = listOf(LocalAccountsDataProvider.getDefaultUserAccount()),
+                subject = "Update to Your Itinerary",
+                body = "ㅎㅎㅎ",
+                createdAt = "2 hours ago"
+            ),
+        )
     }
 }

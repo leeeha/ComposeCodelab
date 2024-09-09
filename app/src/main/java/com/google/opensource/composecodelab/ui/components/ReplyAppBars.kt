@@ -37,9 +37,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.google.opensource.composecodelab.R
 import com.google.opensource.composecodelab.data.Email
+import com.google.opensource.composecodelab.data.LocalAccountsDataProvider
+import com.google.opensource.composecodelab.ui.theme.ComposeCodelabTheme
 
 @Composable
 fun ReplySearchBar(modifier: Modifier = Modifier) {
@@ -71,13 +74,21 @@ fun ReplySearchBar(modifier: Modifier = Modifier) {
     }
 }
 
+@Preview(showBackground = true)
+@Composable
+private fun SearchBarPreview() {
+    ComposeCodelabTheme {
+        ReplySearchBar()
+    }
+}
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun EmailDetailAppBar(
     email: Email,
     isFullScreen: Boolean,
     modifier: Modifier = Modifier,
-    onBackPressed: () -> Unit
+    onBackPressed: () -> Unit,
 ) {
     TopAppBar(
         modifier = modifier,
@@ -130,4 +141,21 @@ fun EmailDetailAppBar(
             }
         }
     )
+}
+
+@Preview
+@Composable
+private fun AppbarPreview() {
+    ComposeCodelabTheme {
+        EmailDetailAppBar(
+            email = Email(
+                id = 5L,
+                sender = LocalAccountsDataProvider.getContactAccountByUid(13L),
+                recipients = listOf(LocalAccountsDataProvider.getDefaultUserAccount()),
+                subject = "Update to Your Itinerary",
+                body = "ㅎㅎㅎ",
+                createdAt = "2 hours ago"
+            ), isFullScreen = true
+        ) {}
+    }
 }
