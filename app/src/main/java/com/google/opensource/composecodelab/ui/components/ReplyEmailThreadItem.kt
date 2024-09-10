@@ -50,12 +50,12 @@ fun ReplyEmailThreadItem(
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .padding(8.dp)
+            .padding(16.dp)
             .background(
                 color = MaterialTheme.colorScheme.background,
                 shape = MaterialTheme.shapes.medium
             )
-            .padding(16.dp)
+            .padding(20.dp)
     ) {
         Row(modifier = Modifier.fillMaxWidth()) {
             ReplyProfileImage(
