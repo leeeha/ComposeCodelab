@@ -50,9 +50,12 @@ fun ReplyEmailThreadItem(
     Column(
         modifier = modifier
             .fillMaxWidth()
+            .padding(8.dp)
+            .background(
+                color = MaterialTheme.colorScheme.background,
+                shape = MaterialTheme.shapes.medium
+            )
             .padding(16.dp)
-            .background(MaterialTheme.colorScheme.background)
-            .padding(20.dp)
     ) {
         Row(modifier = Modifier.fillMaxWidth()) {
             ReplyProfileImage(
@@ -124,7 +127,7 @@ fun ReplyEmailThreadItem(
     }
 }
 
-@Preview(showBackground = true)
+@Preview(showBackground = true, backgroundColor = 0x15f9f5)
 @Composable
 private fun ReplyEmailThreadItemPreview() {
     ComposeCodelabTheme {

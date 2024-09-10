@@ -294,6 +294,7 @@ fun ComposeCodelabTheme(
     MaterialTheme(
         colorScheme = colorScheme,
         typography = typography,
+        shapes = shapes,
         content = content
     )
 }
