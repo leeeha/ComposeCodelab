@@ -21,11 +21,21 @@ import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.statusBars
+import androidx.compose.foundation.layout.windowInsetsTopHeight
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.google.opensource.composecodelab.data.LocalEmailsDataProvider
 import com.google.opensource.composecodelab.ui.theme.ComposeCodelabTheme
 
@@ -37,16 +47,18 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             ComposeCodelabTheme {
-                val uiState by viewModel.uiState.collectAsState()
-                ReplyApp(
-                    replyHomeUIState = uiState,
-                    closeDetailScreen = {
-                        viewModel.closeDetailScreen()
-                    },
-                    navigateToDetail = { emailId ->
-                        viewModel.setSelectedEmail(emailId)
-                    }
-                )
+                Surface(tonalElevation = 5.dp) {
+                    val uiState by viewModel.uiState.collectAsState()
+                    ReplyApp(
+                        replyHomeUIState = uiState,
+                        closeDetailScreen = {
+                            viewModel.closeDetailScreen()
+                        },
+                        navigateToDetail = { emailId ->
+                            viewModel.setSelectedEmail(emailId)
+                        }
+                    )
+                }
             }
         }
     }
@@ -65,10 +77,12 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun ReplyAppPreviewLight() {
     ComposeCodelabTheme {
-        ReplyApp(
-            replyHomeUIState = ReplyHomeUIState(
-                emails = LocalEmailsDataProvider.allEmails
+        Surface(tonalElevation = 5.dp) {
+            ReplyApp(
+                replyHomeUIState = ReplyHomeUIState(
+                    emails = LocalEmailsDataProvider.allEmails
+                )
             )
-        )
+        }
     }
 }
