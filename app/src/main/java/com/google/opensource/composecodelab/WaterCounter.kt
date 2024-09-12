@@ -20,7 +20,7 @@ import androidx.compose.ui.unit.dp
  * Recomposition: 이벤트 발생에 따라 변경된 State를 UI에 반영하기 위해 Composable을 다시 실행하는 것
  *
  * remember: 리컴포지션이 발생해도 상태가 보존되도록 함. (컴포지션에 private 객체를 저장하는 것과 유사)
- * rememberSavable: 스크롤에 따른 컴포지션 종료 및 재생성, 액티비티 또는 프로세스 재생성에도 상태 유지
+ * rememberSaveable: 스크롤에 따른 컴포지션 종료 및 재생성, 액티비티 또는 프로세스 재생성에도 상태 유지
  * */
 @Composable
 fun WaterCounter(modifier: Modifier = Modifier) {
