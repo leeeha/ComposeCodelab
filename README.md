@@ -1,9 +1,11 @@
-# 학습 키워드 
+# 학습 키워드
 
 ## State, Event
 
 - State에 따라 UI에 표시되는 항목이 결정된다.
-- 상태는 존재하고 이벤트는 발생한다.
+- 단방향 데이터 흐름 (UDF): 상태는 아래로, 이벤트는 위로 흐른다.
+- UDF를 통해 UI에 상태를 표시하는 컴포저블과 상태를 저장하고 변경하는 앱 부분을 서로 분리할 수 있다.
+- UI 변경 루프: 이벤트 발생 -> 상태 변경 -> 상태 표시 -> 반복
 
 <img width="200" src="https://github.com/user-attachments/assets/c8693df0-5132-42dc-afd2-6008738d16af"/>
 <img height="200" src="https://github.com/user-attachments/assets/405d77cf-4dbe-48aa-bc5c-6cf4f17828c0"/>
@@ -17,9 +19,58 @@
 
 ## 상태 보존
 
-- remember: 리컴포지션 발생해도 상태 보존 (초기 컴포지션에 객체를 저장하고, 리컴포지션 중에 반환) 
-- rememberSaveable: 구성 변경에 따른 액티비티 재생성, 메모리 부족 같은 예외 상황에 따른 프로세스 재생성에도 상태 보존
-  - 사용자에 의해 액티비티가 완전히 종료되었을 때는 상태 보존 X 
+### remember
+
+- 초기 컴포지션에 calculation 람다를 호출하여 그 결과를 저장해두고, 리컴포지션 중에 마지막으로 저장된 값 반환
+- 리컴포지션 발생해도 컴포지션에 저장된 상태가 보존되도록 함. (상태 캐싱)
+- 초기화하거나 계산하는 데 비용이 많이 드는 작업의 결과를 컴포지션에 저장할 때도 사용
+- 매개변수로 지정된 key 중에 하나라도 변경되면, 캐시 무효화하고 calculation 블록 재실행
+
+```kotlin 
+/**
+ * Remember the value produced by [calculation]. [calculation] will only be evaluated during the composition.
+ * Recomposition will always return the value produced by composition.
+ */
+@Composable
+inline fun <T> remember(crossinline calculation: @DisallowComposableCalls () -> T): T =
+    currentComposer.cache(false, calculation)
+```
+
+```kotlin 
+/**
+ * Remember the value returned by [calculation] if all values of [keys] are equal to the previous
+ * composition, otherwise produce and remember a new value by calling [calculation].
+ */
+@Composable
+inline fun <T> remember(
+  vararg keys: Any?,
+  crossinline calculation: @DisallowComposableCalls () -> T
+): T {
+  var invalid = false
+  for (key in keys) invalid = invalid or currentComposer.changed(key)
+  return currentComposer.cache(invalid, calculation)
+}
+```
+
+### rememberSaveable
+
+- Bundle에 저장할 수 있는 모든 값을 자동으로 저장 (Bundle에 저장할 수 없는 타입은 Parcelize, Saver 활용)
+- 구성 변경에 따른 액티비티 재생성, 시스템에 의한 프로세스 재생성에도 상태 보존
+- 사용자에 의해 액티비티가 완전히 종료되었을 때는 상태 보존 X
+- 매개변수로 지정된 input 중에 하나라도 변경되면, 캐시 무효화하고 calculation 블록 재실행
+
+```kotlin
+@Composable
+fun <T : Any> rememberSaveable(
+    vararg inputs: Any?,
+    saver: Saver<T, out Any> = autoSaver(),
+    key: String? = null,
+    init: () -> T
+): T {
+    // ...
+    return value 
+}
+```
 
 ## State hoisting
 
