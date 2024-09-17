@@ -113,7 +113,8 @@ fun DetailsScreen(
     viewModel: DetailsViewModel = viewModel()
 ) {
     val uiState by produceState(initialValue = DetailsUiState(isLoading = true)) {
-        delay(1000)
+        delay(1000) // simulate loading
+
         val cityDetailsResult = viewModel.cityDetails
         value = if(cityDetailsResult is UiState.Success<ExploreModel>){
             DetailsUiState(cityDetailsResult.data)
