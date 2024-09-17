@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import java.util.Properties
 
 plugins {
     alias(libs.plugins.android.application)
@@ -7,6 +8,10 @@ plugins {
     alias(libs.plugins.ksp)
     alias(libs.plugins.dagger.hilt)
     alias(libs.plugins.compose.compiler)
+}
+
+val properties = Properties().apply {
+    load(rootProject.file("local.properties").inputStream())
 }
 
 android {
@@ -24,6 +29,10 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+
+        val googleMapsKey = properties["MAPS_API_KEY"] as? String ?: ""
+        buildConfigField("String", "MAPS_API_KEY", googleMapsKey)
+        manifestPlaceholders["MAPS_API_KEY"] = googleMapsKey
     }
 
     buildTypes {
@@ -113,4 +122,8 @@ dependencies {
 
     // timber
     implementation(libs.timber)
+
+    // maps
+    implementation(libs.maps)
+    implementation(libs.maps.v3.ktx)
 }
