@@ -26,9 +26,6 @@ android {
         versionName = libs.versions.versionName.get()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        vectorDrawables {
-            useSupportLibrary = true
-        }
 
         val googleMapsKey = properties["MAPS_API_KEY"] as? String ?: ""
         buildConfigField("String", "MAPS_API_KEY", googleMapsKey)
@@ -126,4 +123,10 @@ dependencies {
     // maps
     implementation(libs.maps)
     implementation(libs.maps.v3.ktx)
+    constraints {
+        // Volley is a transitive dependency of maps
+        implementation("com.android.volley:volley:1.2.1") {
+            because("Only volley 1.2.0 or newer are available on maven.google.com")
+        }
+    }
 }
