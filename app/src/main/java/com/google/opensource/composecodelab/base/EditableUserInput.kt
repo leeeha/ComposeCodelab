@@ -34,6 +34,7 @@ import androidx.compose.ui.graphics.SolidColor
 
 @Composable
 fun rememberEditableUserInputState(hint: String): EditableUserInputState =
+    // EditableUserInputState 객체 저장 및 복원을 위해 커스텀 Saver 객체 정의
     rememberSaveable(hint, saver = EditableUserInputState.saver) {
         EditableUserInputState(hint = hint, initialText = hint)
     }

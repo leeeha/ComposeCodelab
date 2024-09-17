@@ -109,8 +109,9 @@ fun ToDestinationUserInput(onToDestinationChanged: (String) -> Unit) {
         vectorImageId = R.drawable.ic_plane,
     )
 
-    LaunchedEffect(key1 = editableUserInputState) {
-        snapshotFlow { editableUserInputState.text }
+    // 입력 값이 변경될 때마다 이펙트 다시 시작
+    LaunchedEffect(editableUserInputState) {
+        snapshotFlow { editableUserInputState.text } // state to flow
             .filter { !editableUserInputState.isHint }
             .collect {
                 currentOnDestinationChanged(editableUserInputState.text)
