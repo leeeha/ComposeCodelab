@@ -78,6 +78,7 @@ compose-ui = { group = "androidx.compose.ui", name = "ui" }
 compose-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
 compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+compose-material = { module = "androidx.compose.material:material" }
 compose-material-three = { module = "androidx.compose.material3:material3" }
 compose-material-icons-extended = { group = "androidx.compose.material", name = "material-icons-extended" }
 compose-material-icons = { module = "androidx.compose.material:material-icons-core" }
@@ -122,6 +123,7 @@ compose = [
     "compose-ui-graphics",
     "compose-ui-tooling",
     "compose-ui-tooling-preview",
+    "compose-material",
     "compose-material-three",
     "compose-material-icons",
     "compose-material-icons-extended",
