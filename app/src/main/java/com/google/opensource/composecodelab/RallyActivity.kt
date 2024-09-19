@@ -19,10 +19,14 @@ package com.google.opensource.composecodelab
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
@@ -45,27 +49,19 @@ class RallyActivity : ComponentActivity() {
 @Composable
 fun RallyApp() {
     RallyTheme {
-        val navController = rememberNavController()
-        val currentBackStack by navController.currentBackStackEntryAsState()
-        val currentDestination = currentBackStack?.destination
-        val currentScreen =
-            rallyTabRowScreens.find { it.route == currentDestination?.route } ?: Overview
-
+        var currentScreen: RallyDestination by remember { mutableStateOf(Overview) }
         Scaffold(
             topBar = {
                 RallyTabRow(
                     allScreens = rallyTabRowScreens,
-                    onTabSelected = { newScreen ->
-                        navController.navigateSingleTopTo(newScreen.route)
-                    },
+                    onTabSelected = { screen -> currentScreen = screen },
                     currentScreen = currentScreen
                 )
             }
         ) { innerPadding ->
-            RallyNavHost(
-                navController = navController,
-                modifier = Modifier.padding(innerPadding)
-            )
+            Box(Modifier.padding(innerPadding)) {
+                currentScreen.screen()
+            }
         }
     }
 }
