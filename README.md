@@ -9,7 +9,7 @@
 ### SideEffect
 
 - Composable 함수의 범위 밖에서 발생하는 앱 상태에 대한 변경사항 
-- 사용자가 버튼을 눌러서 새 화면이 열리는 경우, 앱이 인터넷에 연결되지 않았을 때 에러 메시지 표시 등 
+- 예시: 사용자가 버튼을 눌러서 새 화면이 열리는 경우, 앱이 인터넷에 연결되지 않았을 때 에러 메시지 표시 등 
 
 ### LaunchedEffect
 
@@ -32,12 +32,12 @@
 ### DisposableEffect 
 
 - 키가 변경되거나 컴포지션이 종료될 때 정리해야 하는 작업이 있는 경우 사용 
-- LifecycleEventObserver 사용해 생명주기 이벤트에 따라 cleanup 작업 수행 
+- 예시: LifecycleEventObserver 사용해 생명주기 이벤트에 따라 cleanup 작업 수행 
 
 ### produceState
 
 - compose state가 아닌 것을 compose state로 변환할 때 사용 
-- collectAsStateWithLifecycle() API가 내부적으로 사용하고 있음. 
+- collectAsStateWithLifecycle() API도 내부적으로 produceState 사용하고 있음. 
 
 ### derivedStateOf
 
