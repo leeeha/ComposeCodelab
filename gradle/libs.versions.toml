@@ -71,6 +71,7 @@ datastore-proto = { group = "androidx.datastore", name = "datastore", version.re
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-junit" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "androidx-espresso" }
+androidx-navigation-testing = { module = "androidx.navigation:navigation-testing", version.ref = "navigation" }
 
 # compose
 compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose-bom" }

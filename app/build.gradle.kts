@@ -68,16 +68,17 @@ dependencies {
     implementation(libs.fragment.ktx)
     implementation(libs.material)
 
-    // test
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.bundles.android.test)
-
     // compose
     implementation(platform(libs.compose.bom))
     implementation(libs.bundles.compose)
-    debugImplementation(libs.compose.ui.tooling)
+
+    // test
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.bundles.android.test)
     androidTestImplementation(platform(libs.compose.bom))
     androidTestImplementation(libs.compose.ui.test.junit4)
+    androidTestImplementation(libs.androidx.navigation.testing)
+    debugImplementation(libs.compose.ui.tooling)
     debugImplementation(libs.compose.ui.test.manifest)
 
     // coroutine
