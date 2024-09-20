@@ -72,28 +72,10 @@ fun RallyApp() {
                 )
             }
         ) { innerPadding ->
-            NavHost(
+            RallyNavHost(
                 navController = navController,
-                startDestination = Overview.route,
                 modifier = Modifier.padding(innerPadding)
-            ) {
-                composable(route = Overview.route) {
-                    OverviewScreen(
-                        onClickSeeAllAccounts = {
-                            navController.navigateSingleTopTo(Accounts.route)
-                        },
-                        onClickSeeAllBills = {
-                            navController.navigateSingleTopTo(Bills.route)
-                        }
-                    )
-                }
-                composable(route = Accounts.route) {
-                    AccountsScreen()
-                }
-                composable(route = Bills.route) {
-                    BillsScreen()
-                }
-            }
+            )
         }
     }
 }
