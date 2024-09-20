@@ -45,14 +45,14 @@ import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.google.opensource.composecodelab.RallyDestination
+import com.google.opensource.composecodelab.RallyTab
 import java.util.Locale
 
 @Composable
 fun RallyTabRow(
-    allScreens: List<RallyDestination>,
-    onTabSelected: (RallyDestination) -> Unit,
-    currentScreen: RallyDestination
+    allScreens: List<RallyTab>,
+    currentScreen: RallyTab,
+    onTabSelected: (RallyTab) -> Unit,
 ) {
     Surface(
         Modifier
@@ -62,10 +62,10 @@ fun RallyTabRow(
         Row(Modifier.selectableGroup()) {
             allScreens.forEach { screen ->
                 RallyTab(
-                    text = screen.route,
+                    text = screen.name,
                     icon = screen.icon,
-                    onSelected = { onTabSelected(screen) },
-                    selected = currentScreen == screen
+                    selected = currentScreen == screen,
+                    onSelected = { onTabSelected(screen) }
                 )
             }
         }
@@ -76,8 +76,8 @@ fun RallyTabRow(
 private fun RallyTab(
     text: String,
     icon: ImageVector,
+    selected: Boolean,
     onSelected: () -> Unit,
-    selected: Boolean
 ) {
     val color = MaterialTheme.colors.onSurface
     val durationMillis = if (selected) TabFadeInAnimationDuration else TabFadeOutAnimationDuration

@@ -24,10 +24,12 @@ import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavDestination.Companion.hasRoute
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.google.opensource.composecodelab.ui.components.RallyTabRow
 import com.google.opensource.composecodelab.ui.theme.RallyTheme
+import timber.log.Timber
 
 /**
  * This Activity recreates part of the Rally Material Study from
@@ -36,6 +38,8 @@ import com.google.opensource.composecodelab.ui.theme.RallyTheme
 class RallyActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Timber.plant(Timber.DebugTree())
+
         setContent {
             RallyApp()
         }
@@ -47,17 +51,20 @@ fun RallyApp() {
     RallyTheme {
         val navController = rememberNavController()
         val currentBackStack by navController.currentBackStackEntryAsState()
+
         val currentDestination = currentBackStack?.destination
-        val currentScreen = rallyTabRowScreens.find { it.route == currentDestination?.route } ?: Overview
+        val currentScreen = RallyTab.entries.find { tab ->
+            currentDestination?.hasRoute(tab.route) == true
+        } ?: RallyTab.OVERVIEW
 
         Scaffold(
             topBar = {
                 RallyTabRow(
-                    allScreens = rallyTabRowScreens,
-                    onTabSelected = { newScreen ->
-                        navController.navigateSingleTopTo(newScreen.route)
+                    allScreens = RallyTab.entries,
+                    currentScreen = currentScreen,
+                    onTabSelected = { destination ->
+                        navController.navigateToRallyTab(destination)
                     },
-                    currentScreen = currentScreen
                 )
             }
         ) { innerPadding ->

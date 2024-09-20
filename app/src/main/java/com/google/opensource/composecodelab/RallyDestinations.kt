@@ -18,58 +18,46 @@ package com.google.opensource.composecodelab
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AttachMoney
-import androidx.compose.material.icons.filled.Money
 import androidx.compose.material.icons.filled.MoneyOff
 import androidx.compose.material.icons.filled.PieChart
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.navigation.NavType
-import androidx.navigation.navArgument
-import androidx.navigation.navDeepLink
-import com.google.opensource.composecodelab.ui.accounts.AccountsScreen
-import com.google.opensource.composecodelab.ui.accounts.SingleAccountScreen
-import com.google.opensource.composecodelab.ui.bills.BillsScreen
-import com.google.opensource.composecodelab.ui.overview.OverviewScreen
+import kotlinx.serialization.Serializable
+import kotlin.reflect.KClass
 
 /**
- * Contract for information needed on every Rally navigation destination
- */
-interface RallyDestination {
-    val icon: ImageVector
-    val route: String
-}
+ * Rally Destination routing
+ * */
+@Serializable
+data object Overview
+
+@Serializable
+data object Accounts
+
+@Serializable
+data object Bills
+
+@Serializable
+data class SingleAccount(val type: String)
+const val DEEP_LINK_SINGLE_ACCOUNT_BASE_PATH = "rally://single_account"
 
 /**
- * Rally app navigation destinations
- */
-object Overview : RallyDestination {
-    override val icon = Icons.Filled.PieChart
-    override val route = "overview"
-}
-
-object Accounts : RallyDestination {
-    override val icon = Icons.Filled.AttachMoney
-    override val route = "accounts"
-}
-
-object Bills : RallyDestination {
-    override val icon = Icons.Filled.MoneyOff
-    override val route = "bills"
-}
-
-object SingleAccount : RallyDestination {
-    override val icon = Icons.Filled.Money
-    override val route = "single_account"
-    const val accountTypeArg = "account_type"
-
-    val routeWithArgs = "${route}/{${accountTypeArg}}"
-    val arguments = listOf(
-        navArgument(accountTypeArg) { type = NavType.StringType }
-    )
-    val deepLinks = listOf(
-        navDeepLink { uriPattern = "rally://$route/{$accountTypeArg}"}
+ * Rally Tab enum class
+ * */
+enum class RallyTab(
+    val icon: ImageVector,
+    val route: KClass<*>
+) {
+    OVERVIEW(
+        icon = Icons.Filled.PieChart,
+        route = Overview::class
+    ),
+    ACCOUNTS(
+        icon = Icons.Filled.AttachMoney,
+        route = Accounts::class
+    ),
+    BILLS(
+        icon = Icons.Filled.MoneyOff,
+        route = Bills::class
     )
 }
-
-// Screens to be displayed in the top RallyTabRow
-val rallyTabRowScreens = listOf(Overview, Accounts, Bills)
