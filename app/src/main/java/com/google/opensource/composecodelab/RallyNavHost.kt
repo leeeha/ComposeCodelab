@@ -35,14 +35,20 @@ fun RallyNavHost(
                     navController.navigateToRallyTab(RallyTab.BILLS)
                 },
                 onAccountClick = { accountType ->
-                    navController.navigateToSingleAccount(accountType)
+                    navController.navigateToSingleAccount(
+                        currentTab = RallyTab.OVERVIEW,
+                        accountType = accountType
+                    )
                 }
             )
         }
         composable<Accounts> {
             AccountsScreen(
                 onAccountClick = { accountType ->
-                    navController.navigateToSingleAccount(accountType)
+                    navController.navigateToSingleAccount(
+                        currentTab = RallyTab.ACCOUNTS,
+                        accountType = accountType
+                    )
                 }
             )
         }
@@ -57,7 +63,7 @@ fun RallyNavHost(
             )
         ) { navBackStackEntry ->
             val account = navBackStackEntry.toRoute<SingleAccount>()
-            SingleAccountScreen(account.type)
+            SingleAccountScreen(account.accountType)
         }
     }
 }
@@ -80,7 +86,6 @@ fun NavController.navigateToRallyTab(destination: RallyTab) {
     }
 }
 
-
 fun NavController.navigateToOverview(navOptions: NavOptions) =
     navigate(route = Overview, navOptions)
 
@@ -90,6 +95,16 @@ fun NavController.navigateToAccounts(navOptions: NavOptions) =
 fun NavController.navigateToBills(navOptions: NavOptions) =
     navigate(route = Bills, navOptions)
 
-fun NavController.navigateToSingleAccount(type: String, navOptions: NavOptions? = null) {
-    navigate(route = SingleAccount(type), navOptions)
+fun NavController.navigateToSingleAccount(
+    currentTab: RallyTab,
+    accountType: String,
+    navOptions: NavOptions? = null,
+) {
+    navigate(
+        route = SingleAccount(
+            currentTab = currentTab,
+            accountType = accountType
+        ),
+        navOptions = navOptions
+    )
 }

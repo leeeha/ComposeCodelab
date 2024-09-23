@@ -225,7 +225,10 @@ private fun <T> OverViewDivider(
  * The Accounts card within the Rally Overview screen.
  */
 @Composable
-private fun AccountsCard(onClickSeeAll: () -> Unit, onAccountClick: (String) -> Unit) {
+private fun AccountsCard(
+    onClickSeeAll: () -> Unit,
+    onAccountClick: (String) -> Unit,
+) {
     val amount = UserData.accounts.map { account -> account.balance }.sum()
     OverviewScreenCard(
         title = stringResource(R.string.accounts),

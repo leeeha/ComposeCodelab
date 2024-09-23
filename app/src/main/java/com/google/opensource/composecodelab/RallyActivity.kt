@@ -27,6 +27,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavDestination.Companion.hasRoute
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.toRoute
 import com.google.opensource.composecodelab.ui.components.RallyTabRow
 import com.google.opensource.composecodelab.ui.theme.RallyTheme
 import timber.log.Timber
@@ -51,11 +52,19 @@ fun RallyApp() {
     RallyTheme {
         val navController = rememberNavController()
         val currentBackStack by navController.currentBackStackEntryAsState()
-
         val currentDestination = currentBackStack?.destination
-        val currentScreen = RallyTab.entries.find { tab ->
+
+        // 백 스택에서 현재 선택된 탭 확인 (초기에는 OVERVIEW)
+        var currentScreen = RallyTab.entries.find { tab ->
             currentDestination?.hasRoute(tab.route) == true
         } ?: RallyTab.OVERVIEW
+
+        // 상세 화면으로 진입한 경우, 상단 탭 구분
+        if (currentDestination?.hasRoute(SingleAccount::class) == true) {
+            currentBackStack?.toRoute<SingleAccount>()?.let { account ->
+                currentScreen = account.currentTab
+            }
+        }
 
         Scaffold(
             topBar = {

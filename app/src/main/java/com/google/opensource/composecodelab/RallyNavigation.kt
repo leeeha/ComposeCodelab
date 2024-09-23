@@ -20,7 +20,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AttachMoney
 import androidx.compose.material.icons.filled.MoneyOff
 import androidx.compose.material.icons.filled.PieChart
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.vector.ImageVector
 import kotlinx.serialization.Serializable
 import kotlin.reflect.KClass
@@ -38,7 +37,11 @@ data object Accounts
 data object Bills
 
 @Serializable
-data class SingleAccount(val type: String)
+data class SingleAccount(
+    val currentTab: RallyTab,
+    val accountType: String
+)
+
 const val DEEP_LINK_SINGLE_ACCOUNT_BASE_PATH = "rally://single_account"
 
 /**
