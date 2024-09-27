@@ -8,8 +8,7 @@
   - rememberNavController(), navigate(), currentBackStackEntryAsState() 
   - 항상 하나의 NavHost와 연결되어야 한다.
 - NavHost
-  - 탐색 가능한 destination의 모음
-  - NavGraph를 구성하는 destination 저장하고, 화면에 표시하는 컨테이너 역할
+  - NavGraph를 구성하는 destination을 저장하고, 화면에 표시하는 컨테이너 역할
   - 여러 destination을 탐색할 때, NavHost는 자동으로 recomposition 된다.
   - NavGraph와 NavController를 연결하는 역할
 - Route 
